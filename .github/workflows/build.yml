@@ -25,7 +25,12 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
+      - name: Install dependencies
+        run: apt install build-essential gcc gdb binutils libmpfr6 libmpfr-dev libgmp-dev libgmp10 libmpc-dev libmpc3
+
+      - name: Install build dependencies
+        run: apt build-dep gdb binutils
+
       - name: Build toolchain
         run: ./toolchain.sh
 
