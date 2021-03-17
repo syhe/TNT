@@ -34,6 +34,17 @@ jobs:
       - name: Install build dependencies
         run: sudo apt-get build-dep gdb binutils
 
+      - name: Cache sources
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-sources
+        with:
+          path: |
+            *.tar.gz
+            *.tar.bz2
+            *.tar.xz
+          key: build-${{ env.cache-name }}-${{ hashFiles('toolchain.sh') }}
+
       - name: Build toolchain
         run: ./toolchain.sh
 
