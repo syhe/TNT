@@ -80,7 +80,8 @@ jobs:
         uses: syhe/zip-release@master
         with:
           filename: toolchain.tar.zst
-          path: ~/toolchain
+          type: tar
+          path: toolchain
 
       - name: Create release for tagged versions
         uses: softprops/action-gh-release@v1
