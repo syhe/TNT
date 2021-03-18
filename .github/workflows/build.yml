@@ -30,13 +30,16 @@ jobs:
       - name: Enable src repos
         run: sudo sed -iE 's/^# deb-src/deb-src/' /etc/apt/sources.list && sudo apt-get update
 
+      - name: Hash package indices
+        run: sha256sum /var/lib/apt/lists/* > apt_lists.sha256sum
+
       - name: Cache packages
         uses: actions/cache@v2
         with:
           path: |
             /var/cache/apt/archives/*
           # hash dependencies.sh to pick up on changes to the installation procedure
-          key: build-cache-pkgs-${{ hashFiles('/var/lib/apt/lists/*', 'ci/dependencies.sh') }}
+          key: build-cache-pkgs-${{ hashFiles('apt_lists.sha256sum', 'ci/dependencies.sh') }}
 
       - name: Install dependencies
         run: sudo ./ci/dependencies.sh deps
