@@ -39,7 +39,7 @@ DEBUG_SYMBOLS=${DEBUG_SYMBOLS:-true}
 # Size of buffers used by newlib, should be at least 64 bytes.
 # Lowe values save RAM, yet significantly slow down IO.
 # This can selectively be overridden using setbuff().
-BUFFSIZ=${BUFFSIZE:-1024}
+BUFFSIZ=${BUFFSIZ:-1024}
 
 # Parallel build
 CPUS=$(nproc || echo "${CPUS:-4}")
