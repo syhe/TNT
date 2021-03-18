@@ -31,7 +31,7 @@ jobs:
         run: sudo sed -iE 's/^# deb-src/deb-src/' /etc/apt/sources.list && sudo apt-get update
 
       - name: Hash package indices
-        run: sha256sum /var/lib/apt/lists/* > apt_lists.sha256sum
+        run: "sha256sum /var/lib/apt/lists/* > apt_lists.sha256sum || true"
 
       - name: Cache packages
         uses: actions/cache@v2
