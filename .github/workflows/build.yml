@@ -60,6 +60,8 @@ jobs:
 
       - name: Build toolchain
         run: ./toolchain.sh
+        env:
+          BUFFSIZ: 64
 
       - name: upload build artifacts
         uses: actions/upload-artifact@v2.2.2
