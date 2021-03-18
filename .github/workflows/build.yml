@@ -30,6 +30,13 @@ jobs:
       - name: Enable src repos
         run: sudo sed -iE 's/^# deb-src/deb-src/' /etc/apt/sources.list && sudo apt-get update
 
+      - name: Cache packages
+        uses: actions/cache@v2
+        with:
+          path: |
+            /var/cache/apt/archives/*
+          key: build-cache-pkgs-${{ hashFiles(/var/lib/apt/lists/*, .github/workflows/build.yml) }}
+
       - name: Install dependencies
         run: sudo apt-get install build-essential gcc gdb binutils libmpfr6 libmpfr-dev libgmp-dev libgmp10 libmpc-dev libmpc3
 
