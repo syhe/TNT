@@ -39,7 +39,7 @@ usage() {
 }
 
 cmd_deps() {
-  run sudo apt-get install \
+  run apt-get install \
     binutils \
     build-essential \
     gcc \
@@ -53,7 +53,7 @@ cmd_deps() {
 }
 
 cmd_build-deps() {
-  run sudo apt-get build-dep \
+  run apt-get build-dep \
     binutils \
     gdb
 }
