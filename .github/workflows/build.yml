@@ -36,7 +36,7 @@ jobs:
           path: |
             /var/cache/apt/archives/*
           # hash dependencies.sh to pick up on changes to the installation procedure
-          key: build-cache-pkgs-${{ hashFiles('/var/lib/apt/lists/*', './ci/dependencies.sh') }}
+          key: build-cache-pkgs-${{ hashFiles('/var/lib/apt/lists/*', 'ci/dependencies.sh') }}
 
       - name: Install dependencies
         run: sudo ./ci/dependencies.sh deps
