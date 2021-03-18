@@ -35,13 +35,14 @@ jobs:
         with:
           path: |
             /var/cache/apt/archives/*
-          key: build-cache-pkgs-${{ hashFiles(/var/lib/apt/lists/*, .github/workflows/build.yml) }}
+          # hash dependencies.sh to pick up on changes to the installation procedure
+          key: build-cache-pkgs-${{ hashFiles(/var/lib/apt/lists/*, ./ci/dependencies.sh) }}
 
       - name: Install dependencies
-        run: sudo apt-get install build-essential gcc gdb binutils libmpfr6 libmpfr-dev libgmp-dev libgmp10 libmpc-dev libmpc3
+        run: sudo ./ci/dependencies.sh deps
 
       - name: Install build dependencies
-        run: sudo apt-get build-dep gdb binutils
+        run: sudo ./ci/dependencies.sh build-deps
 
       - name: Cache sources
         uses: actions/cache@v2
