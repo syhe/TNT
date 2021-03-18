@@ -19,7 +19,7 @@
 #NANO_MALLOC=true
 
 # Debug symbols, allows debugging of C library
-DEBUG_SYMBOLS=true
+DEBUG_SYMBOLS=${DEBUG_SYMBOLS:-true}
 
 # Use newlib-nano-1.0
 #NANO=true
@@ -38,11 +38,11 @@ DEBUG_SYMBOLS=true
 
 # Size of buffers used by newlib, should be at least 64 bytes.
 # Lowe values save RAM, yet significantly slow down IO.
-# This can selectively be overridden using setbuff(). 
-BUFFSIZ=1024
+# This can selectively be overridden using setbuff().
+BUFFSIZ=${BUFFSIZE:-1024}
 
 # Parallel build
-CPUS=4
+CPUS=$(nproc || echo "${CPUS:-4}")
 
 # Uncomment to enable instrumentation calls to newlib (can be used with gprof)
 #NEWLIB_PROFILING="-pg"
